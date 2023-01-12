@@ -1,9 +1,11 @@
-import Script from 'next/script';
 import Head from 'next/head'
 import ProductCard from '../components/ui/products/card'
 import { Hero } from '../components/ui/hero';
+import { useSession } from "next-auth/react"
 
 export default function Home() {
+
+  const { data: session } = useSession()
   return (
     <>
       <Head>
@@ -12,7 +14,6 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      
       <main>
         <Hero />
         <ProductCard />

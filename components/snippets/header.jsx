@@ -1,9 +1,20 @@
-import { useRef, useState } from "react";
+import Link from "next/link";
+import { useSession, signOut } from "next-auth/react"
 import {useTheme} from "next-themes";
+import { useRef, useState } from "react";
 
 export default function Header() {
 
-  const {systemTheme , theme, setTheme} = useTheme ();
+  const { data: session } = useSession()
+  const {systemTheme , theme, setTheme} = useTheme();
+  
+  const menuRef = useRef();
+  const menuBtnRef = useRef();
+  const [toggleMenu, setToggleMenu] = useState(false)
+
+  const handleLogout = async () => {
+    signOut('http://localhost:3000')
+  }
 
   const renderThemeChanger= () => {
     const currentTheme = theme === "system" ? systemTheme : theme ;
@@ -21,10 +32,6 @@ export default function Header() {
       )
     }
   };
-
-  const menuRef = useRef();
-  const menuBtnRef = useRef();
-  const [toggleMenu, setToggleMenu] = useState(false)
 
   const showMenu = () => {
     toggleMenu==false ? setToggleMenu(true) : setToggleMenu(false)
@@ -50,9 +57,9 @@ export default function Header() {
         "
       >
        <div>
-          <a href="#">
+          <Link href={'/'}>
             <span className="text-2xl font-medium text-gray-800 dark:text-gray-50">NEXTERCE</span>
-          </a>
+          </Link>
         </div>
        
         <div className="flex flex-row items-center md:hidden">
@@ -131,18 +138,31 @@ export default function Header() {
                 >Customers</a
               >
             </li>
-            <li>
-              <a class="md:p-2 py-2 block hover:text-blue-500" href="#"
-                >Blog</a
-              >
-            </li>
-            <li>
-              <a
-                class="md:p-2 py-2 px-2 block duration-300 ease-in-out text-gray-50 hover:bg-blue-600 bg-blue-500 rounded-lg md:mx-2"
-                href="#"
-                >Sign Up</a
-              >
-            </li>
+            {!session 
+            ?
+            <>
+              <li>
+                <Link href={'login'} class="md:p-2 py-2 block hover:text-blue-500" 
+                  >Login</Link
+                >
+              </li>
+              <li>
+                <Link
+                  class="md:p-2 py-2 px-2 block duration-300 ease-in-out text-gray-50 hover:bg-blue-600 bg-blue-500 rounded-lg md:mx-2"
+                  href={'register'}
+                  >Sign Up</Link
+                >
+              </li>
+            </>
+            :
+              <li>
+                <button class="md:p-2 py-2 block hover:text-blue-500" onClick={handleLogout}>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="rotate-180" width={28}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
+                  </svg>
+                </button>
+              </li>
+            }
           </ul>
           <div className="hidden md:block">
             {renderThemeChanger()}
