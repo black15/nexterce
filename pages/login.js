@@ -1,12 +1,23 @@
-import { signIn } from 'next-auth/react'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
+import { getSession, signIn } from 'next-auth/react'
+import { useFormik } from 'formik'
 import Banner from '../public/img/login-rafiki.svg'
-
+import { validate_login } from '../libs/validate'
 
 const Login = () => {
+
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    validate: validate_login,
+    onSubmit: values => {
+      alert(JSON.stringify(values, null, 2));
+    },
+  });
 
   const handleGoogleAuth = async () => {
     signIn('google', {callbackUrl: 'http://localhost:3000'})
@@ -24,7 +35,7 @@ const Login = () => {
         <title>Login</title>
       </Head>
       
-      <section class="">
+      <section>
         <div class="container p-12 h-full">
           <div class="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
             <div class="md:w-1/2 mb-12 md:mb-0">
@@ -41,23 +52,25 @@ const Login = () => {
               <div className='text-center mb-6'>
                 <h1 className='text-gray-800 text-3xl font-medium dark:text-gray-50 italic'>Login</h1>
               </div>
-              <form>
+              <form onSubmit={formik.handleSubmit}>
                 <div class="mb-6">
                   <input
                     type="text"
-                    name='email'
-                    class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none dark:bg-gray-700 dark:focus:border-gray-500 dark:border-gray-800 dark:text-gray-50"
+                    className={`form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none dark:bg-gray-700 dark:focus:border-gray-500 dark:border-gray-800 dark:text-gray-50 ${formik.errors.email && 'border-1 border-red-700 focus:border-red-600 dark:border-red-700 dark:focus:border-red-600'}`}
                     placeholder="E-mail"
+                    {...formik.getFieldProps('email')}
                   />
+                  {formik.errors.email ? <span className='text-sm text-red-500 font-medium'>{formik.errors.email}</span> : null}
                 </div>
 
                 <div class="mb-6 relative">
                   <input
                     type="password"
-                    name='password'
-                    class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none dark:bg-gray-700 dark:focus:border-gray-500 dark:border-gray-800 dark:text-gray-50"
+                    className={`form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none dark:bg-gray-700 dark:focus:border-gray-500 dark:border-gray-800 dark:text-gray-50 ${formik.errors.password && 'border-1 border-red-700 focus:border-red-600 dark:border-red-700 dark:focus:border-red-600'}`}
                     placeholder="Password"
+                    {...formik.getFieldProps('password')}
                   />
+                  {formik.errors.password ? <span className='text-sm text-red-500 font-medium'>{formik.errors.password}</span> : null}
                 </div>
 
                 <div class="flex justify-between items-center mb-6">
@@ -136,3 +149,19 @@ const Login = () => {
 }
 
 export default Login
+
+export async function getServerSideProps({req}) {
+  const session = await getSession({req})
+
+  if(session) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false
+      }
+    }
+  }
+  return {
+    props: {session}
+  }
+}
