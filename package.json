@@ -15,6 +15,7 @@
     "@mui/icons-material": "^5.11.0",
     "@mui/material": "^5.11.4",
     "@next/font": "13.1.1",
+    "bcrypt": "^5.1.0",
     "eslint": "8.31.0",
     "eslint-config-next": "13.1.1",
     "flowbite": "^1.6.1",

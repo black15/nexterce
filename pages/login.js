@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
+import {useRouter} from 'next/router'
 import { getSession, signIn } from 'next-auth/react'
 import { useFormik } from 'formik'
 import Banner from '../public/img/login-rafiki.svg'
@@ -8,16 +9,25 @@ import { validate_login } from '../libs/validate'
 
 const Login = () => {
 
+  const router = useRouter()
+
   const formik = useFormik({
     initialValues: {
       email: '',
       password: '',
     },
     validate: validate_login,
-    onSubmit: values => {
-      alert(JSON.stringify(values, null, 2));
-    },
-  });
+    onSubmit
+  })
+  async function onSubmit(values) {
+    const status = await signIn('credentials', {
+      redirect: false,
+      email: values.email,
+      password: values.password,
+      callbackUrl: '/'
+    })
+    if(status.ok) router.push(status.url)
+  }
 
   const handleGoogleAuth = async () => {
     signIn('google', {callbackUrl: 'http://localhost:3000'})

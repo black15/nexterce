@@ -1,13 +1,17 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
+import {useRouter} from 'next/router'
 import { getSession } from 'next-auth/react'
+import { useState } from 'react'
 import { useFormik } from 'formik'
 import Banner from '../public/img/Sign-up-rafiki.svg'
 import { validate_registration } from '../libs/validate'
 
 const Register = () => {
 
+  const router = useRouter()
+  const [error, setError] = useState(null)
   const formik = useFormik({
     initialValues: {
       firstName: '',
@@ -16,10 +20,31 @@ const Register = () => {
       password: '',
     },
     validate: validate_registration,
-    onSubmit: values => {
-      alert(JSON.stringify(values, null, 2));
-    },
+    onSubmit: createNewUser,
   });
+
+  async function createNewUser(values) {
+    const settings = {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values)
+    }
+    try {
+      const response = await fetch('http://localhost:3000/api/auth/register', settings)
+      const data = await response.json();
+      if (!data.error) {
+        router.push('login')
+      }
+      else {
+        setError(data.error)
+      }
+    } catch(e) {
+      console.log('Error', e);
+    }
+  }
 
   return (
     <div>
@@ -84,7 +109,9 @@ const Register = () => {
                   />
                   {formik.errors.password ? <span className='text-sm text-red-500 font-medium'>{formik.errors.password}</span> : null}
                 </div>
-
+                <div>
+                  {error && <p className='text-red-700 font-medium mb-2'>{error}</p>}
+                </div>
                 <div className="tems-center mb-6">
                   <span className='text-gray-800 dark:text-gray-50'>Already have an account? </span>
                   <Link href={"login"} className="text-blue-600 hover:text-blue-700 focus:text-blue-700 active:text-blue-800 duration-200 transition ease-in-out">Sign in</Link>
