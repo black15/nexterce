@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import {useRouter} from 'next/router'
+import { useState } from 'react'
 import { getSession, signIn } from 'next-auth/react'
 import { useFormik } from 'formik'
 import Banner from '../public/img/login-rafiki.svg'
@@ -10,6 +11,7 @@ import { validate_login } from '../libs/validate'
 const Login = () => {
 
   const router = useRouter()
+  const [error, setError] = useState(null)
 
   const formik = useFormik({
     initialValues: {
@@ -27,6 +29,9 @@ const Login = () => {
       callbackUrl: '/'
     })
     if(status.ok) router.push(status.url)
+    else {
+      setError(status.error)
+    }
   }
 
   const handleGoogleAuth = async () => {
@@ -100,6 +105,11 @@ const Login = () => {
                     >Forgot password?</a
                   >
                 </div>
+                
+                <div>
+                  {error && <p className='text-red-700 font-medium mb-2'>{error}</p>}
+                </div>
+
                 <div class="tems-center mb-6">
                   <span className='text-gray-800 dark:text-gray-50'>Don&apos;t have an account? </span>
                   <Link href={"register"} className="text-blue-600 hover:text-blue-700 focus:text-blue-700 active:text-blue-800 duration-200 transition ease-in-out">Sign up</Link>
