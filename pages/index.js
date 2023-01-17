@@ -1,11 +1,10 @@
 import Head from 'next/head'
 import ProductCard from '../components/ui/products/card'
 import { Hero } from '../components/ui/hero';
-import { useSession } from "next-auth/react"
+import { useSession } from "next-auth/react";
+import { getProducts } from '../services';
 
-export default function Home() {
-
-  const { data: session } = useSession()
+export default function Home({products}) {  
   return (
     <>
       <Head>
@@ -16,8 +15,19 @@ export default function Home() {
       </Head>
       <main>
         <Hero />
-        <ProductCard />
+        <div className='flex flex-row flex-wrap justify-center'>
+          {products.map(product => <ProductCard key={product.id} product={product} />)}
+        </div>
       </main>
     </>
   )
+}
+
+export const getStaticProps = async () => {
+  const products = (await getProducts() || [])
+  return {
+    props: {
+      products,
+    }
+  }
 }
