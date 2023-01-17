@@ -1,6 +1,11 @@
 import request, { GraphQLClient, gql } from "graphql-request";
 
-const graphQL_API = process.env.NEXT_PUBLIC_HYGRAPH_URL
+const graphCMS_API 	= process.env.NEXT_PUBLIC_HYGRAPH_URL
+const graphCMS_TOKEN = process.env.HYGRAPH_ACCESS_TOKEN
+
+const client = new GraphQLClient(graphCMS_API)
+
+client.setHeader('authorization', `Bearer ${graphCMS_TOKEN}`)
 
 export const getProducts = async () => {
 
@@ -24,6 +29,6 @@ export const getProducts = async () => {
 		}
 	`
 
-	const data = await request(graphQL_API, query)
+	const data = await client.request(query)
 	return data.products;
 } 

@@ -41,7 +41,6 @@ export default NextAuth({
       // return user if email and password are valid
       return result
     }
-
   })
   ]
 })

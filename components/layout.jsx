@@ -7,11 +7,9 @@ import { ThemeProvider } from 'next-themes'
 export default function Layout({ children }) {
   return (
     <div className='mx-auto bg-gray-50 dark:bg-gray-900 min-h-screen'>
-      <ThemeProvider enableSystem={true} attribute="class">
-        <Header />
-        <main>{children}</main>
-        <Footer />
-      </ThemeProvider>
+      <Header />
+      <main>{children}</main>
+      <Footer />
     </div>
   )
 }
