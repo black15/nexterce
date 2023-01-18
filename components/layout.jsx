@@ -6,10 +6,12 @@ import { ThemeProvider } from 'next-themes'
 
 export default function Layout({ children }) {
   return (
-    <div className='mx-auto bg-gray-50 dark:bg-gray-900 min-h-screen text-gray-800 dark:text-gray-50'>
-      <Header />
-      <main>{children}</main>
-      <Footer />
+    <div className="bg-gray-50 dark:bg-gray-900 min-h-screen text-gray-800 dark:text-gray-50">
+      <main className='mx-auto container'>
+        <Header />
+        <main>{children}</main>
+        <Footer />
+      </main>
     </div>
   )
 }

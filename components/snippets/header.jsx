@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useSession, signOut } from "next-auth/react"
 import {useTheme} from "next-themes";
 import { useRef, useState } from "react";
+import {HiOutlineShoppingCart} from 'react-icons/hi'
 
 export default function Header() {
 
@@ -20,14 +21,14 @@ export default function Header() {
     const currentTheme = theme === "system" ? systemTheme : theme;
     if(currentTheme ==="dark"){
       return (
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-yellow-500 mx-4" role="button" onClick={() => setTheme('light')}>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width={29} className="text-yellow-500 mx-4" role="button" onClick={() => setTheme('light')}>
           <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z" />
         </svg>
       )
     }
     else {
       return (
-        <svg role="button" onClick={() => setTheme('dark')} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-gray-600 mx-4"> <path fillRule="evenodd" d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z" clipRule="evenodd" /> </svg>
+        <svg role="button" onClick={() => setTheme('dark')} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width={27} className="text-gray-600 mx-4"> <path fillRule="evenodd" d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z" clipRule="evenodd" /> </svg>
       )
     }
   };
@@ -40,7 +41,7 @@ export default function Header() {
   // Navigration Bar Top + Bottom
   <header className="mb-2">
     {/* Top Navigration Bar */}
-    <div className="flex flex-row items-center justify-between w-full px-6 py-1 border-b-2 border-gray-100 dark:border-gray-800">
+    <div className="flex flex-row items-center justify-between w-full px-6 py-1 border-b-2 border-gray-100 dark:border-gray-800 shadow dark:drop-shadow">
       {/* Search products field */}
       <div className="bg-red-300">
         <input
@@ -48,7 +49,7 @@ export default function Header() {
           className="
             form-control
             block
-            w-[500px]
+            md:w-[500px]
             px-3
             py-2
             text-base
@@ -74,7 +75,12 @@ export default function Header() {
         </div>
       </div>
 
-      <div className="flex items-center">
+      <div className="flex items-center justify-center">
+
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1} width={30} className="mx-4 stroke-gray-700 dark:stroke-gray-100">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+        </svg>
+        
         {!session 
           ?
           <>
@@ -88,14 +94,15 @@ export default function Header() {
             >
           </>
           :
-          <div className="dropdown inline-block relative duration-300 ease-in-out z-20">
+          <div className="dropdown inline-block relative z-20">
             {/* List Profile and Logout navigation buttons  */}
-            <button className="text-gray-800 dark:text-gray-100 font-medium py-2 rounded inline-flex items-center">
-            <svg width={30} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle cx="12" cy="10" r="3" stroke="#777" strokeLinecap="round"></circle> <circle cx="12" cy="12" r="9" stroke="#777"></circle> <path d="M18 18.7059C17.6461 17.6427 16.8662 16.7033 15.7814 16.0332C14.6966 15.3632 13.3674 15 12 15C10.6326 15 9.30341 15.3632 8.21858 16.0332C7.13375 16.7033 6.35391 17.6427 6 18.7059" stroke="#555" strokeLinecap="round"></path> </g></svg>
+            <button className="py-2 inline-flex items-center">
+              <svg className="stroke-gray-700 dark:stroke-gray-100" width={30} viewBox="0 0 24 24" strokeWidth="1" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle cx="12" cy="10" r="3" strokeLinecap="round"></circle> <circle cx="12" cy="12" r="9"></circle> <path d="M18 18.7059C17.6461 17.6427 16.8662 16.7033 15.7814 16.0332C14.6966 15.3632 13.3674 15 12 15C10.6326 15 9.30341 15.3632 8.21858 16.0332C7.13375 16.7033 6.35391 17.6427 6 18.7059" strokeLinecap="round"></path> </g>
+              </svg>
             </button>
             <ul className="dropdown-menu absolute right-0 top-10 hidden text-gray-700 pt-1">
               <li className="">
-                <button className="rounded bg-gray-200 font-medium hover:text-red-500 hover:bg-gray-300 py-2 px-4 block whitespace-no-wrap" onClick={() => handleLogout()}>
+                <button className="rounded bg-gray-200 font-normal hover:text-red-500 hover:bg-gray-300 py-2 px-4 block whitespace-no-wrap" onClick={() => handleLogout()}>
                   Logout
                 </button>
               </li>
@@ -121,9 +128,9 @@ export default function Header() {
           text-lg 
           text-gray-700
           bg-white
-          dark:bg-gray-900
-          drop-shadow-xl
+          dark:bg-gray-900 
           dark:text-gray-50
+          drop-shadow
         "
       >
        <div>
@@ -171,7 +178,7 @@ export default function Header() {
               </Link>
             </li>
             <li>
-              <div className="dropdown inline-block relative duration-300 ease-in-out ">
+              <div className="relative dropdown inline-block duration-300 ease-in-out z-20">
                 <button className="text-gray-800 dark:text-gray-100 font-medium py-2 px-4 rounded inline-flex items-center">
                   <span className="mr-1 uppercase">all categories</span>
                   <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/> </svg>
@@ -184,7 +191,7 @@ export default function Header() {
               </div>
             </li>
             <li>
-              <div className="dropdown inline-block relative duration-300 ease-in-out">
+              <div className="dropdown inline-block relative duration-300 ease-in-out z-10">
                 <button className="text-gray-800 dark:text-gray-100 font-medium py-2 px-4 rounded inline-flex items-center">
                 <span className="mr-1 uppercase">pages</span>
                   <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/> </svg>

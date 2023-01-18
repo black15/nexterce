@@ -1,19 +1,20 @@
 import React from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 const ProductCard = ({product}) => {
   return (
     <div className="flex flex-col items-center space-y-2 w-72 max-w-sm bg-white rounded-lg shadow drop-shadow-sm dark:bg-gray-800 dark:hover:bg-gray-900 dark:border-gray-900 duration-300 ease-in-out hover:-translate-y-1 m-2">
-      <a href={product.slug}>
+      <Link href={`p/${product.slug}`}>
         <Image 
-          className="p-8 rounded-t-lg" 
+          className="p-8 rounded-t-lg w-72 h-72" 
           src={product.images[0].url}
           alt={"product image"}
           width={350}
           height={350}
           unoptimized
         />
-      </a>
+      </Link>
       <div className="flex flex-col items-center space-y-2 px-5 pb-5">
         <a href="#">
           <h5 className="text-md font-semibold tracking-tight text-gray-900 dark:text-white">{product.name}</h5>

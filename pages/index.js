@@ -2,9 +2,9 @@ import Head from 'next/head'
 import ProductCard from '../components/ui/products/card'
 import { Hero } from '../components/ui/hero';
 import { useSession } from "next-auth/react";
-import { getProducts } from '../services';
+import { getProducts, getSliderImages } from '../services';
 
-export default function Home({products}) {  
+export default function Home({products, images}) {  
   return (
     <>
       <Head>
@@ -14,7 +14,7 @@ export default function Home({products}) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <Hero />
+        <Hero images={images.images} />
         <div className='text-3xl text-gray-800 dark:text-gray-100 text-center font-semibold mt-6 mb-2'>
           SHOP YOUR BESTSELLERS
         </div>
@@ -28,9 +28,11 @@ export default function Home({products}) {
 
 export const getStaticProps = async () => {
   const products = (await getProducts() || [])
+  const images = (await getSliderImages() || [])
   return {
     props: {
       products,
+      images,
     }
   }
 }
