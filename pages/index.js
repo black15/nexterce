@@ -15,6 +15,9 @@ export default function Home({products}) {
       </Head>
       <main>
         <Hero />
+        <div className='text-3xl text-gray-800 dark:text-gray-100 text-center font-semibold mt-6 mb-2'>
+          SHOP YOUR BESTSELLERS
+        </div>
         <div className='flex flex-row flex-wrap justify-center'>
           {products.map(product => <ProductCard key={product.id} product={product} />)}
         </div>

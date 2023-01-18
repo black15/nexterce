@@ -37,7 +37,78 @@ export default function Header() {
   }
 
   return (
+  // Navigration Bar Top + Bottom
   <header className="mb-2">
+    {/* Top Navigration Bar */}
+    <div className="flex flex-row items-center justify-between w-full px-6 py-1 border-b-2 border-gray-100 dark:border-gray-800">
+      {/* Search products field */}
+      <div className="bg-red-300">
+        <input
+          type="search"
+          className="
+            form-control
+            block
+            w-[500px]
+            px-3
+            py-2
+            text-base
+            font-normal
+            text-gray-50
+            bg-white
+            border border-solid border-gray-300
+            transition
+            ease-in-out
+            m-0
+            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
+            dark:bg-gray-700 dark:focus:border-gray-500 dark:border-gray-800 dark:text-gray-50
+          "
+          placeholder="Search items..."
+        />
+        {/* Show products list by names when user searchs */}
+        <div className="hidden absolute left-6 top-12 h-72 w-[500px] bg-gray-800 z-10 rounded-b">
+          <div className="flex flex-col w-full">
+            <div className="p-4 text-gray-700 dark:text-gray-100 border-b-2 border-gray-100 dark:border-gray-700">
+              Test
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="flex items-center">
+        {!session 
+          ?
+          <>
+            <Link href={'login'} className="text-gray-800 dark:text-gray-100 font-semibold py-2 block md:p-2 hover:text-blue-500 dark:hover:text-blue-500" 
+              >Login</Link
+            >
+            <Link
+              className="md:p-2 py-2 px-2 block duration-300 ease-in-out text-gray-50 hover:bg-blue-600 bg-blue-500 rounded-sm md:mx-2"
+              href={'register'}
+              >Sign Up</Link
+            >
+          </>
+          :
+          <div className="dropdown inline-block relative duration-300 ease-in-out z-20">
+            {/* List Profile and Logout navigation buttons  */}
+            <button className="text-gray-800 dark:text-gray-100 font-medium py-2 rounded inline-flex items-center">
+            <svg width={30} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle cx="12" cy="10" r="3" stroke="#777" strokeLinecap="round"></circle> <circle cx="12" cy="12" r="9" stroke="#777"></circle> <path d="M18 18.7059C17.6461 17.6427 16.8662 16.7033 15.7814 16.0332C14.6966 15.3632 13.3674 15 12 15C10.6326 15 9.30341 15.3632 8.21858 16.0332C7.13375 16.7033 6.35391 17.6427 6 18.7059" stroke="#555" strokeLinecap="round"></path> </g></svg>
+            </button>
+            <ul className="dropdown-menu absolute right-0 top-10 hidden text-gray-700 pt-1">
+              <li className="">
+                <button className="rounded bg-gray-200 font-medium hover:text-red-500 hover:bg-gray-300 py-2 px-4 block whitespace-no-wrap" onClick={() => handleLogout()}>
+                  Logout
+                </button>
+              </li>
+            </ul>
+          </div>
+          }
+          <div className="hidden md:block">
+            {renderThemeChanger()}
+          </div>
+      </div>
+    </div>
+
+    {/* Bottom Navigation Bar */}
     <nav
         className="
           flex flex-wrap
@@ -95,77 +166,50 @@ export default function Header() {
               md:pt-0 dark:text-gray-100"
           >
             <li>
-              <div className="md:p-0">
-                <div className="md:mx-4">
-                  <input
-                    type="search"
-                    className="
-                      form-control
-                      block
-                      w-[300px]
-                      px-3
-                      py-2
-                      text-base
-                      font-normal
-                      text-gray-50
-                      bg-white
-                      border border-solid border-gray-300
-                      rounded
-                      transition
-                      ease-in-out
-                      m-0
-                      focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
-                      dark:bg-gray-700 dark:focus:border-gray-500 dark:border-gray-800 dark:text-gray-50
-                    "
-                    placeholder="Search items..."
-                  />
-                </div>
+              <Link href={'/'}>
+                <span className="text-gray-800 dark:text-gray-50 font-medium uppercase px-4">Home</span>
+              </Link>
+            </li>
+            <li>
+              <div className="dropdown inline-block relative duration-300 ease-in-out ">
+                <button className="text-gray-800 dark:text-gray-100 font-medium py-2 px-4 rounded inline-flex items-center">
+                  <span className="mr-1 uppercase">all categories</span>
+                  <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/> </svg>
+                </button>
+                <ul className="dropdown-menu absolute hidden text-gray-700 pt-1">
+                  <li className=""><a className="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="#">One</a></li>
+                  <li className=""><a className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="#">Two</a></li>
+                  <li className=""><a className="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="#">Three is the magic number</a></li>
+                </ul>
               </div>
             </li>
             <li>
-              <a className="md:p-2 py-2 block hover:text-blue-500" href="#"
-                >Features</a
-              >
-            </li>
-            <li>
-              <a className="md:p-2 py-2 block hover:text-blue-500" href="#"
-                >Pricing</a
-              >
-            </li>
-            <li>
-              <a className="md:p-2 py-2 block hover:text-blue-500" href="#"
-                >Customers</a
-              >
-            </li>
-            {!session 
-            ?
-            <>
-              <li>
-                <Link href={'login'} className="md:p-2 py-2 block hover:text-blue-500" 
-                  >Login</Link
-                >
-              </li>
-              <li>
-                <Link
-                  className="md:p-2 py-2 px-2 block duration-300 ease-in-out text-gray-50 hover:bg-blue-600 bg-blue-500 rounded-lg md:mx-2"
-                  href={'register'}
-                  >Sign Up</Link
-                >
-              </li>
-            </>
-            :
-              <li>
-                <button className="md:p-2 py-2 block hover:text-blue-500" onClick={handleLogout}>
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="rotate-180" width={28}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
-                  </svg>
+              <div className="dropdown inline-block relative duration-300 ease-in-out">
+                <button className="text-gray-800 dark:text-gray-100 font-medium py-2 px-4 rounded inline-flex items-center">
+                <span className="mr-1 uppercase">pages</span>
+                  <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/> </svg>
                 </button>
-              </li>
-            }
+                <ul className="dropdown-menu absolute hidden text-gray-700 pt-1">
+                  <li className=""><a className="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="#">One</a></li>
+                  <li className=""><a className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="#">Two</a></li>
+                  <li className=""><a className="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="#">Three is the magic number</a></li>
+                </ul>
+              </div>
+            </li>
+            <li>
+              <div className="dropdown inline-block relative duration-300 ease-in-out">
+                <button className="text-gray-800 dark:text-gray-100 font-medium py-2 px-4 rounded inline-flex items-center">
+                <span className="mr-1 uppercase">blogs</span>
+                  <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/> </svg>
+                </button>
+                <ul className="dropdown-menu absolute hidden text-gray-700 pt-1">
+                  <li className=""><a className="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="#">One</a></li>
+                  <li className=""><a className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="#">Two</a></li>
+                  <li className=""><a className="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="#">Three is the magic number</a></li>
+                </ul>
+              </div>
+            </li>
           </ul>
-          <div className="hidden md:block">
-            {renderThemeChanger()}
-          </div>
         </div>
     </nav>
   </header>
