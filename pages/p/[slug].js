@@ -1,42 +1,35 @@
-import { getProductBySlug, getProducts } from '../../services'
+import { getProductBySlug, getProducts, getRelatedProducts } from '../../services'
 import ProductDeatils from '../../components/ui/product'
 
-export default function Product({product}) {
+export default function Product({product, relatedProducts}) {
+
 	return (
-		<ProductDeatils product={product[0]}/>
+		<ProductDeatils product={product} related={relatedProducts} />
 	)
 }
 
 export const getStaticProps = async ({params}) => {
 	const product = await getProductBySlug(params.slug) || null
+	const relatedProducts = await getRelatedProducts(product.categories[0].id, params.slug) || []
+
 	return {
 		props: {
 			product,
+			relatedProducts,
 		}
 	}
 }
 
 export async function getStaticPaths() {
-	// When this is true (in preview environments) don't
-	// prerender any static pages
-	// (faster builds, but slower initial page load)
-	if (process.env.SKIP_BUILD_STATIC_GENERATION) {
-	  return {
-		 paths: [],
-		 fallback: 'blocking',
-	  }
-	}
- 
-	// Call an external API endpoint to get posts
+	// Call API endpoint to get products
 	const products = await getProducts()
- 
+
 	// Get the paths we want to prerender based on posts
 	// In production environments, prerender all pages
 	// (slower builds, but faster initial page load)
 	const paths = products.map((product) => ({
-	  params: { slug: product.slug },
+		params: { slug: product.slug },
 	}))
- 
-	// { fallback: false } means other routes should 404
-	return { paths, fallback: false }
- }
+
+	return { paths, fallback: 'blocking' }
+}

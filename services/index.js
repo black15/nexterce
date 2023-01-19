@@ -63,6 +63,7 @@ export const getProductBySlug = async (slug) => {
 				price
 				slug
 				categories {
+					id
 					name
 					slug
 				}
@@ -73,5 +74,23 @@ export const getProductBySlug = async (slug) => {
 		}
 	`
 	const data = await client.request(query, {slug})
-	return data.products;
+	return data.products[0];
+}
+
+export const getRelatedProducts = async (id, slug) => {
+	const query = gql`
+		query GetThisCategoryProduct($id: ID!, $slug: String!) {
+			category(where: {id: $id}) {
+				products(first: 10, where: {slug_not: $slug}){
+					name
+					slug
+					images {
+					url
+					}
+				}
+			}
+		}
+	`
+	const data = await client.request(query, {id, slug})
+	return data.category.products
 }

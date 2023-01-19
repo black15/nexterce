@@ -14,6 +14,22 @@ module.exports = {
       'xl': '1280px',
       '2xl': '1536px',
     },
+    extend: {
+      animation: {
+        'marquee-slower': 'marquee 25s linear infinite',
+        'marquee': 'marquee 20s linear infinite',
+        'marquee-fast': 'marquee 15s linear infinite',
+        'marquee-faster': 'marquee 10s linear infinite',
+        'marquee-thunder': 'marquee 5s linear infinite',
+        'scroll-slower': 'scroll 15s linear infinite',
+      },
+      keyframes: {
+        marquee: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
+        }
+      },
+    },
   },
   plugins: [],
 }

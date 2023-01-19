@@ -1,21 +1,55 @@
+import Head from "next/head"
 import Image from "next/image"
-import {useState} from 'react'
+import Link from "next/link"
+import {useState, useEffect} from 'react'
 import {AiFillStar, AiOutlineStar} from 'react-icons/ai'
+import { useDispatch, useSelector } from "react-redux"
+import { addProductToCart, defineQty,
+	selectAmount, 
+	selectProducts,
+	selectQty } 
+	from "../../store/cartSlice"
 
-const ProductDeatils = ({product}) => {
+const ProductDeatils = ({product, related}) => {
+
+	// Redux dispatch
+	const dispatch = useDispatch()
 
 	const [qty, setQty] = useState(0)
 	const [img, setImg] = useState(null)
 	const {id, name, price, slug, images, categories, createdAt, description} = product
-
+	
+	// Set image url to null when component renders
+	useEffect(() => {
+	  setImg(null)
+	}, [slug])
+	
+	const handleCartAdd = () => {
+		dispatch(
+			addProductToCart({
+				id,
+				name,
+				price,
+				slug,
+				images,
+				qty
+			}),
+		dispatch(defineQty(qty)),
+		)
+	}
 	return (
+	<>
+		<Head>
+			<title>NEXTERCE | {name}</title>
+		</Head>
+
 		<div className='flex flex-col items-center'>
 			{/* Product Details Container */}
 			<div className='flex flex-row w-full p-4 px-6'>
 				{/* Product Images Section */}
 				<div className='flex flex-col w-1/3 items-center space-y-6'>
 					<div className='p-2 bg-gray-200 hover:bg-transparent rounded-lg transition duration-300'>
-						<Image className=' transition duration-300 w-72 h-72 bg-cover bg-center'
+						<Image className=' transition duration-300 w-72 h-72 bg-cover bg-center rounded-lg'
 							src={img ? img : images[0].url}
 							alt={'Product Image'}
 							width={280}
@@ -68,14 +102,39 @@ const ProductDeatils = ({product}) => {
 						</div>
 					</div>
 					{/* Options  */}
-					<div className='flex space-x-6'>
-						<button className='font-medium bg-[#0192c2] text-gray-100 px-4 p-2 shadow drop-shadow rounded-sm uppercase'>Add to cart</button>
+					<div className='flex space-x-6 pt-6'>
+						<button className='font-medium bg-[#0192c2] text-gray-100 px-4 p-2 shadow drop-shadow rounded-sm uppercase' onClick={() => qty && handleCartAdd()} >Add to cart</button>
 						<button className='font-medium text-gray-800 dark:text-gray-100 border border-[#016e92] px-4 p-2 rounded-sm uppercase'>Continue shopping</button>
 					</div>
 				</div>
 				{/* END Product Details Section */}
 			</div>
+			
+			{/* Suggested products slide animation */}
+			{related.length ?
+				<div className="w-full overflow-x-hidden mt-24">
+					<h1 className="text-3xl font-medium my-6">You May Also Like</h1>
+					<div className="flex items-center justify-center gap-7 animate-marquee-thunder md:animate-marquee-faster xl:animate-marquee-fast hover:pause w-[100%]">
+						{related.map(product => (
+							<Link href={product.slug} key={product.slug} >
+								<div className='p-2 bg-gray-200 dark:bg-gray-700 hover:scale-110  hover:-translate-y-2 dark:hover:-translate-y-2 hover:bg-transparent dark:hover:bg-transparent rounded-lg transition' key={product.slug}>
+									<Image className='w-36 h-36'
+										src={product.images[0].url}
+										alt={'Sub Images'}
+										width={60}
+										height={60}
+										unoptimized
+									/>
+								</div>
+							</Link>
+						))}
+					</div>
+				</div>
+				: null
+			}
+			{/* END Suggested products slide animation */}
 		</div>
+	</>
 	)
 }
 
