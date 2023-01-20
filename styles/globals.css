@@ -34,3 +34,15 @@
 .dropdown:hover .dropdown-menu {
   display: block;
 }
+
+.title::before {
+  content: "";
+  position: absolute;
+  left: 7%;
+  bottom: 16px;
+  width: 150px;
+  height: 14px;
+  transform: skew(-12deg) translateX(-50%);
+  background: rgba(238,111,87,0.5);
+  z-index: -1;
+}

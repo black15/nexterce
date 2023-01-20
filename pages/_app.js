@@ -15,7 +15,7 @@ export default function App({
 
   const router = useRouter()
   const [showChild, setShowChild] = useState(false);
-
+  nProgress.configure({showSpinner: false})
   useEffect(() => {
     setShowChild(true); // avoid react Hydration failed error screen
     // NProgress bar settings

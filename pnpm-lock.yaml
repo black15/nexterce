@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@emotion/react': ^11.10.5
   '@emotion/styled': ^11.10.5
+  '@etchteam/next-pagination': ^3.5.4
   '@heroicons/react': ^2.0.13
   '@mui/icons-material': ^5.11.0
   '@mui/material': ^5.11.4
@@ -28,6 +29,7 @@ specifiers:
   react: 18.2.0
   react-dom: 18.2.0
   react-icons: ^4.7.1
+  react-paginate: ^8.1.4
   react-redux: ^8.0.5
   redux: ^4.2.0
   tailwindcss: ^3.2.4
@@ -35,6 +37,7 @@ specifiers:
 dependencies:
   '@emotion/react': 11.10.5_react@18.2.0
   '@emotion/styled': 11.10.5_hp5f5nkljdiwilp4rgxyefcplu
+  '@etchteam/next-pagination': 3.5.4_next@13.1.1+react@18.2.0
   '@heroicons/react': 2.0.13_react@18.2.0
   '@mui/icons-material': 5.11.0_f3iq2byl5bu7ge3km7yifn3f6u
   '@mui/material': 5.11.4_5rzy53przelm5jchjmb5vr6dxy
@@ -58,6 +61,7 @@ dependencies:
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-icons: 4.7.1_react@18.2.0
+  react-paginate: 8.1.4_react@18.2.0
   react-redux: 8.0.5_e42enmjmqb4imi3q3iaq2rrebm
   redux: 4.2.0
 
@@ -1088,6 +1092,20 @@ packages:
       - supports-color
     dev: false
 
+  /@etchteam/next-pagination/3.5.4_next@13.1.1+react@18.2.0:
+    resolution: {integrity: sha512-/mE6FO2Y5ANdOny4/Z+3ZPx3FWtvxwLYORo6UZKqlwJWTmdWTGu7+wKx8+oGmOEaD+NToqiw9663X4a3PLx/1A==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      next: '>=10'
+      react: '>=16'
+    dependencies:
+      classnames: 2.3.2
+      lodash: 4.17.21
+      next: 13.1.1_biqbaboplfbrettd7655fr4n2y
+      query-string: 6.12.1
+      react: 18.2.0
+    dev: false
+
   /@graphql-typed-document-node/core/3.1.1_graphql@16.6.0:
     resolution: {integrity: sha512-NQ17ii0rK1b34VZonlmT2QMJFI70m0TRwbknO/ihlbatXyaktDhN/98vBiUU6kNBPljqGqyIrl2T4nY2RpFANg==}
     peerDependencies:
@@ -1968,6 +1986,10 @@ packages:
     engines: {node: '>=10'}
     dev: false
 
+  /classnames/2.3.2:
+    resolution: {integrity: sha512-CSbhY4cFEJRe6/GQzIk5qXZ4Jeg5pcsP7b5peFSDpffpe1cqjASH/n9UTjBwOp6XpMSTwQ8Za2K5V02ueA7Tmw==}
+    dev: false
+
   /client-only/0.0.1:
     resolution: {integrity: sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA==}
     dev: false
@@ -2100,6 +2122,11 @@ packages:
         optional: true
     dependencies:
       ms: 2.1.2
+    dev: false
+
+  /decode-uri-component/0.2.2:
+    resolution: {integrity: sha512-FqUYQ+8o158GyGTrMFJms9qh3CqTKvAqgqsTnkLI8sKu0028orqBhxNMFkFen0zGyg6epACD32pjVk58ngIErQ==}
+    engines: {node: '>=0.10'}
     dev: false
 
   /deep-equal/2.2.0:
@@ -3950,6 +3977,15 @@ packages:
     engines: {node: '>=6'}
     dev: false
 
+  /query-string/6.12.1:
+    resolution: {integrity: sha512-OHj+zzfRMyj3rmo/6G8a5Ifvw3AleL/EbcHMD27YA31Q+cO5lfmQxECkImuNVjcskLcvBRVHNAB3w6udMs1eAA==}
+    engines: {node: '>=6'}
+    dependencies:
+      decode-uri-component: 0.2.2
+      split-on-first: 1.1.0
+      strict-uri-encode: 2.0.0
+    dev: false
+
   /queue-microtask/1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
 
@@ -3986,6 +4022,15 @@ packages:
 
   /react-is/18.2.0:
     resolution: {integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==}
+    dev: false
+
+  /react-paginate/8.1.4_react@18.2.0:
+    resolution: {integrity: sha512-c3rxjcTEqeDQa6LqXifxLeFguY2qy2CHGRphVjHLFFMGfIHyaJ+v3bOvIlLYEeohwQ1q+cQpknjsqBVrkc/SNA==}
+    peerDependencies:
+      react: ^16 || ^17 || ^18
+    dependencies:
+      prop-types: 15.8.1
+      react: 18.2.0
     dev: false
 
   /react-redux/8.0.5_e42enmjmqb4imi3q3iaq2rrebm:
@@ -4247,6 +4292,16 @@ packages:
       memory-pager: 1.5.0
     dev: false
     optional: true
+
+  /split-on-first/1.1.0:
+    resolution: {integrity: sha512-43ZssAJaMusuKWL8sKUBQXHWOpq8d6CfN/u1p4gUzfJkM05C8rxTmYrkIPTXapZpORA6LkkzcUulJ8FqA7Uudw==}
+    engines: {node: '>=6'}
+    dev: false
+
+  /strict-uri-encode/2.0.0:
+    resolution: {integrity: sha512-QwiXZgpRcKkhTj2Scnn++4PKtWsH0kpzZ62L2R6c/LUVYv7hVnZqcg2+sMuT6R7Jusu1vviK/MFsu6kNJfWlEQ==}
+    engines: {node: '>=4'}
+    dev: false
 
   /string-width/4.2.3:
     resolution: {integrity: sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==}
