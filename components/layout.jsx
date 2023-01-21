@@ -1,8 +1,20 @@
 import Head from "next/head"
+import { useDispatch, useSelector } from "react-redux"
+import { useEffect } from 'react'
+import { getTotals, selectProducts } from "../store/cartSlice"
 import Footer from "./snippets/footer"
 import Header from "./snippets/header"
 
 export default function Layout({ children }) {
+
+	const products = useSelector(selectProducts)
+	const dispatch = useDispatch()
+
+	useEffect(() => {
+		dispatch(getTotals())
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [products])
+
   return (
     <>
       <Head>

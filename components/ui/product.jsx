@@ -1,21 +1,20 @@
 import Head from "next/head"
 import Image from "next/image"
 import Link from "next/link"
-import {useState, useEffect} from 'react'
+import { useRouter } from "next/router"
+import { useState, useEffect } from 'react'
+import { useDispatch } from "react-redux"
 import {AiFillStar, AiOutlineStar} from 'react-icons/ai'
-import { useDispatch, useSelector } from "react-redux"
-import { addProductToCart, defineQty,
-	selectAmount, 
-	selectProducts,
-	selectQty } 
-	from "../../store/cartSlice"
+import { addProduct, increase } from "../../store/cartSlice"
 
 const ProductDeatils = ({product, related}) => {
+	
+	const router = useRouter()
 
 	// Redux dispatch
 	const dispatch = useDispatch()
 
-	const [qty, setQty] = useState(0)
+	const [qty, setQty] = useState(1)
 	const [img, setImg] = useState(null)
 	const {id, name, price, slug, images, categories, createdAt, description} = product
 	
@@ -24,19 +23,18 @@ const ProductDeatils = ({product, related}) => {
 	  setImg(null)
 	}, [slug])
 	
-	const handleCartAdd = () => {
-		dispatch(
-			addProductToCart({
-				id,
-				name,
-				price,
-				slug,
-				images,
-				qty
-			}),
-		dispatch(defineQty(qty)),
-		)
+	const handleAdd = () => {
+		dispatch(addProduct({
+			id,
+			name,
+			price,
+			slug,
+			images,
+			quantity: 1
+		}))
+		// dispatch(increase({quantity: qty}))
 	}
+
 	return (
 	<>
 		<Head>
@@ -93,18 +91,18 @@ const ProductDeatils = ({product, related}) => {
 						<h2 className='text-2xl text-[#0192c2] dark:text-[#0192c2] font-semibold'>${price}</h2>
 					</div>
 					{/* Quantity Settings */}
-					<div className='flex items-center my-2'>
+					{/* <div className='flex items-center my-2'>
 						<span className='text-lg font-medium'>Quantity </span>
 						<div>
 							<button className='font-semibold px-3 p-1 mx-3 border border-red-500 rounded-full' onClick={() => setQty(prev => prev != 0 ? prev - 1 :  0)}> - </button>
 							<span className='text-lg font-semibold'>{qty}</span>
 							<button className='font-semibold px-3 p-1 mx-3 border border-[#0192c2] rounded-full' onClick={() => setQty(prev => prev + 1)}> + </button>
 						</div>
-					</div>
+					</div> */}
 					{/* Options  */}
 					<div className='flex space-x-6 pt-6'>
-						<button className='font-medium bg-[#0192c2] text-gray-100 px-4 p-2 shadow drop-shadow rounded-sm uppercase' onClick={() => qty && handleCartAdd()} >Add to cart</button>
-						<button className='font-medium text-gray-800 dark:text-gray-100 border border-[#016e92] px-4 p-2 rounded-sm uppercase'>Continue shopping</button>
+						<button className='font-medium bg-[#0192c2] text-gray-100 px-4 p-2 shadow drop-shadow rounded-sm uppercase' onClick={() => handleAdd(1)}>Add to cart</button>
+						<button className='font-medium text-gray-800 dark:text-gray-100 border border-[#016e92] px-4 p-2 rounded-sm uppercase cursor-pointer' onClick={()=>router.push('/')}>Continue shopping</button>
 					</div>
 				</div>
 				{/* END Product Details Section */}
