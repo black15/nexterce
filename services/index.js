@@ -94,3 +94,23 @@ export const getRelatedProducts = async (id, slug) => {
 	const data = await client.request(query, {id, slug})
 	return data.category.products
 }
+
+export const searchProducts = async (qrr) => {
+	console.log('-------------',graphCMS_TOKEN);
+	const query = gql`
+		query SearchProducts($query: String!) {
+			products(where: {name_contains: $query}) {
+				id
+				name
+				slug
+				price
+				images {
+					id
+					url
+				}
+			}
+		}
+	`
+	const data = await client.request(query, {qrr})
+	return data
+}

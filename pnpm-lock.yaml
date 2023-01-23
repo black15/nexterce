@@ -32,6 +32,7 @@ specifiers:
   react-paginate: ^8.1.4
   react-redux: ^8.0.5
   redux: ^4.2.0
+  redux-persist: ^6.0.0
   tailwindcss: ^3.2.4
 
 dependencies:
@@ -64,6 +65,7 @@ dependencies:
   react-paginate: 8.1.4_react@18.2.0
   react-redux: 8.0.5_e42enmjmqb4imi3q3iaq2rrebm
   redux: 4.2.0
+  redux-persist: 6.0.0_react@18.2.0+redux@4.2.0
 
 devDependencies:
   autoprefixer: 10.4.13_postcss@8.4.21
@@ -4107,6 +4109,19 @@ packages:
     dependencies:
       picomatch: 2.3.1
     dev: true
+
+  /redux-persist/6.0.0_react@18.2.0+redux@4.2.0:
+    resolution: {integrity: sha512-71LLMbUq2r02ng2We9S215LtPu3fY0KgaGE0k8WRgl6RkqxtGfl7HUozz1Dftwsb0D/5mZ8dwAaPbtnzfvbEwQ==}
+    peerDependencies:
+      react: '>=16'
+      redux: '>4.0.0'
+    peerDependenciesMeta:
+      react:
+        optional: true
+    dependencies:
+      react: 18.2.0
+      redux: 4.2.0
+    dev: false
 
   /redux-thunk/2.4.2_redux@4.2.0:
     resolution: {integrity: sha512-+P3TjtnP0k/FEjcBL5FZpoovtvrTNT/UXd4/sluaSyrURlSlhLSzEdfsTBW7WsKB6yPvgd7q/iZPICFjW4o57Q==}

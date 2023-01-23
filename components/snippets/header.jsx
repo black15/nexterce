@@ -4,6 +4,7 @@ import {useTheme} from "next-themes";
 import { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { selectCount } from "../../store/cartSlice";
+import { searchProducts } from "../../services";
 
 export default function Header() {
 
@@ -15,6 +16,12 @@ export default function Header() {
   const menuRef = useRef();
   const menuBtnRef = useRef();
   const [toggleMenu, setToggleMenu] = useState(false)
+
+  const [query, setQuery] = useState(null)
+  const serachQuery = (e) => {
+    setQuery(e.target.value)
+    console.log(query);
+  }
 
   const handleLogout = async () => {
     signOut('http://localhost:3000')
@@ -47,27 +54,30 @@ export default function Header() {
     <div className="flex flex-row items-center justify-between w-full px-6 py-1 border-b-2 border-gray-100 dark:border-gray-800 shadow dark:drop-shadow">
       {/* Search products field */}
       <div className="bg-red-300">
-        <input
-          type="search"
-          className="
-            form-control
-            block
-            md:w-[500px]
-            px-3
-            py-2
-            text-base
-            font-normal
-            text-gray-50
-            bg-white
-            border border-solid border-gray-300
-            transition
-            ease-in-out
-            m-0
-            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
-            dark:bg-gray-700 dark:focus:border-gray-500 dark:border-gray-800 dark:text-gray-50
-          "
-          placeholder="Search items..."
-        />
+        <form >
+          <input
+            type="search"
+            className="
+              form-control
+              block
+              md:w-[500px]
+              px-3
+              py-2
+              text-base
+              font-normal
+              text-gray-50
+              bg-white
+              border border-solid border-gray-300
+              transition
+              ease-in-out
+              m-0
+              focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
+              dark:bg-gray-700 dark:focus:border-gray-500 dark:border-gray-800 dark:text-gray-50
+            "
+            placeholder="Search items..."
+            onChange={serachQuery}
+          />
+        </form>
         {/* Show products list by names when user searchs */}
         <div className="hidden absolute left-6 top-12 h-72 w-[500px] bg-gray-800 z-10 rounded-b">
           <div className="flex flex-col w-full">

@@ -3,6 +3,8 @@ import { Provider } from "react-redux"
 import { ThemeProvider } from "next-themes"
 import { useRouter } from "next/router"
 import {useState, useEffect} from 'react'
+import { PersistGate } from 'redux-persist/integration/react'
+import { persistStore } from 'redux-persist'
 import nProgress from "nprogress"
 import { store } from "../store"
 import Layout from '../components/layout'
@@ -12,6 +14,8 @@ import '../styles/nprogress.css'
 export default function App({
   Component, pageProps: {session, ...pageProps}
 }) {
+
+  let persistor = persistStore(store);
 
   const router = useRouter()
 
@@ -32,13 +36,15 @@ export default function App({
   
   return (
     <Provider store={store}>
-      <SessionProvider session={session}>
-        <ThemeProvider enableSystem={true} attribute="class">
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </ThemeProvider>
-      </SessionProvider>
+      <PersistGate loading={null} persistor={persistor}>
+        <SessionProvider session={session}>
+          <ThemeProvider enableSystem={true} attribute="class">
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </ThemeProvider>
+        </SessionProvider>
+      </PersistGate>
     </Provider>
   )
 

@@ -1,14 +1,18 @@
 import Image from "next/image"
 import Link from "next/link"
-import { useEffect, useState } from "react"
-import { useDispatch } from "react-redux"
-import { decrease, increase, remove } from "../../store/cartSlice"
+import { useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { decrease, increase, remove, selectProducts } from "../../store/cartSlice"
 
 function CartDetails({product}) {
 
 	const dispatch = useDispatch()
-	
-	const [qty, setQty] = useState(1)
+	const products = useSelector(selectProducts)
+
+	const [qty, setQty] = useState(() => {
+		const p = products.find(item => item.id === product.id)
+		return p.quantity
+	})
 	
 	const handleInc = () => {
 		setQty(prev => prev + 1)
