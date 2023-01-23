@@ -4,9 +4,11 @@ import {useTheme} from "next-themes";
 import { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { selectCount } from "../../store/cartSlice";
-import { searchProducts } from "../../services";
+import { useRouter } from "next/router";
 
 export default function Header() {
+
+  const router = useRouter()
 
   const quantity = useSelector(selectCount)
   
@@ -20,7 +22,6 @@ export default function Header() {
   const [query, setQuery] = useState(null)
   const serachQuery = (e) => {
     setQuery(e.target.value)
-    console.log(query);
   }
 
   const handleLogout = async () => {
@@ -54,9 +55,14 @@ export default function Header() {
     <div className="flex flex-row items-center justify-between w-full px-6 py-1 border-b-2 border-gray-100 dark:border-gray-800 shadow dark:drop-shadow">
       {/* Search products field */}
       <div className="bg-red-300">
-        <form >
+        <form onSubmit={(e) => {
+          e.preventDefault()
+          e.target.search.value = ""
+          router.push(`/search/${query}`)
+        }}>
           <input
             type="search"
+            name="search"
             className="
               form-control
               block

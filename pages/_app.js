@@ -6,7 +6,7 @@ import {useState, useEffect} from 'react'
 import { PersistGate } from 'redux-persist/integration/react'
 import { persistStore } from 'redux-persist'
 import nProgress from "nprogress"
-import { store } from "../store"
+import configureStore from '../store/index'
 import Layout from '../components/layout'
 import '../styles/globals.css'
 import '../styles/nprogress.css'
@@ -15,8 +15,8 @@ export default function App({
   Component, pageProps: {session, ...pageProps}
 }) {
 
-  let persistor = persistStore(store);
-
+  const { store, persistor } = configureStore();
+  
   const router = useRouter()
 
   const [showChild, setShowChild] = useState(false);

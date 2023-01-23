@@ -21,7 +21,7 @@ export const Hero = ({images}) => {
 
   return (
     <section>
-      <div className="md:h-80 lg:h-96 xl:h-[700px] my-4 bg-center bg-cover flex flex-col justify-around items-center rounded duration-300 ease-in-out group" style={{backgroundImage: `url(${images[pickImg].url})`}}>
+      <div className="md:h-80 lg:h-96 xl:h-[700px] my-4 bg-center bg-cover flex flex-col justify-around items-center md:rounded duration-300 ease-in-out group" style={{backgroundImage: `url(${images[pickImg].url})`}}>
           {/* Left arrow */}
         {/* <div className="absolute left-6 hidden group-hover:block">
           <BsFillArrowLeftCircleFill fontSize={'2em'} onClick={() => prevSlide()} />

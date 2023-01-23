@@ -1,8 +1,17 @@
-import { configureStore } from '@reduxjs/toolkit'
-import storage from 'redux-persist/lib/storage'
-import {combineReducers} from "redux"; 
-import { persistReducer } from 'redux-persist'
-import thunk from 'redux-thunk'
+import {
+	persistStore,
+	persistReducer,
+	FLUSH,
+	REHYDRATE,
+	PAUSE,
+	PERSIST,
+	PURGE,
+	REGISTER,
+ } from "redux-persist"
+import { combineReducers } from "redux";
+import { configureStore } from "@reduxjs/toolkit"
+import storage from "redux-persist/lib/storage"
+
 import cartSlice from './cartSlice'
 
 const reducers = combineReducers({
@@ -17,8 +26,18 @@ const persistConfig = {
 const persistedReducer = persistReducer(persistConfig, reducers);
 
 // create a store
-export const store = configureStore({
-	reducer: persistedReducer,
-	devTools: process.env.NODE_ENV !== 'production',
-	middleware: [thunk]
- })
+// eslint-disable-next-line import/no-anonymous-default-export
+export default () => {
+	const store = configureStore({
+	  reducer: persistedReducer,
+	  middleware: (getDefaultMiddleware) => [
+		 ...getDefaultMiddleware({
+			serializableCheck: {
+			  ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+			},
+		 }),
+	  ],
+	});
+	const persistor = persistStore(store);
+	return { store, persistor };
+ };
