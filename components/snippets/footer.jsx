@@ -1,14 +1,15 @@
 import React from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 const Footer = () => {
   return (
     <footer className="p-4 bg-white sm:p-6 dark:bg-gray-900 mt-32 drop-shadow-sm">
       <div className="md:flex md:justify-between">
         <div className="mb-6 md:mb-0">
-          <a href="" className="flex items-center">
-            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">NEXTERCE</span>
-          </a>
+          <Link href={"/"} className="flex items-center">
+            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white animate-wiggle">NEXTERCE</span>
+          </Link>
         </div>
         <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
           <div>
