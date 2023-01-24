@@ -5,6 +5,7 @@ import { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { selectCount } from "../../store/cartSlice";
 import { useRouter } from "next/router";
+import { BiSearchAlt2 } from 'react-icons/bi'
 
 export default function Header() {
 
@@ -60,29 +61,34 @@ export default function Header() {
           e.target.search.value = ""
           router.push(`/search/${query}`)
         }}>
-          <input
-            type="search"
-            name="search"
-            className="
-              form-control
-              block
-              md:w-[500px]
-              px-3
-              py-2
-              text-base
-              font-normal
-              text-gray-50
-              bg-white
-              border border-solid border-gray-300
-              transition
-              ease-in-out
-              m-0
-              focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
-              dark:bg-gray-700 dark:focus:border-gray-500 dark:border-gray-800 dark:text-gray-50
-            "
-            placeholder="Search items..."
-            onChange={serachQuery}
-          />
+          <div className="relative">
+            <input
+              type="search"
+              name="search"
+              className="
+                form-control
+                block
+                md:w-[500px]
+                px-3
+                py-2
+                h-12
+                text-base
+                font-normal
+                text-gray-50
+                bg-white
+                border border-solid border-gray-300
+                transition
+                ease-in-out
+                m-0
+                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
+                dark:bg-gray-700 dark:focus:border-gray-500 dark:border-gray-800 dark:text-gray-50
+              "
+              placeholder="Search items..."
+              required
+              onChange={serachQuery}
+            />
+            <button type="submit" className="absolute right-2 bottom-1 text-gray-50 px-4 py-2 bg-[#407bff] rounded "> <BiSearchAlt2 fontSize={24} /> </button>
+          </div>
         </form>
         {/* Show products list by names when user searchs */}
         <div className="hidden absolute left-6 top-12 h-72 w-[500px] bg-gray-800 z-10 rounded-b">

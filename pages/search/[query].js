@@ -3,7 +3,6 @@ import { searchProducts } from "../../services"
 import Search from "../../components/ui/search"
 
 export default function SearchProducts({products}) {
-	console.log(products);
 	const router = useRouter()
 	const {query} = router.query
 

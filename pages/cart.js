@@ -1,10 +1,10 @@
 /* eslint-disable react/no-unescaped-entities */
+import Image from "next/image";
+import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAmount, selectProducts, clear } from "../store/cartSlice"
 import CartDetails from "../components/ui/cart";
 import cartSVG from '../public/img/cart.svg'
-import Image from "next/image";
-import { useRouter } from "next/router";
 
 function Cart() {
 	
