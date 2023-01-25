@@ -51,7 +51,7 @@ export default function Header() {
 
   return (
   // Navigration Bar Top + Bottom
-  <header className="mb-2">
+  <header className="relative mb-2 z-30">
     {/* Top Navigration Bar */}
     <div className="flex flex-row items-center justify-between w-full px-6 py-1 border-b-2 border-gray-100 dark:border-gray-800 shadow dark:drop-shadow">
       {/* Search products field */}
@@ -124,14 +124,14 @@ export default function Header() {
             >
           </>
           :
-          <div className="dropdown inline-block relative z-20">
+          <div className="dropdown relative z-20">
             {/* List Profile and Logout navigation buttons  */}
             <button className="py-2 inline-flex items-center">
               <svg className="stroke-gray-700 dark:stroke-gray-100" width={30} viewBox="0 0 24 24" strokeWidth="1" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle cx="12" cy="10" r="3" strokeLinecap="round"></circle> <circle cx="12" cy="12" r="9"></circle> <path d="M18 18.7059C17.6461 17.6427 16.8662 16.7033 15.7814 16.0332C14.6966 15.3632 13.3674 15 12 15C10.6326 15 9.30341 15.3632 8.21858 16.0332C7.13375 16.7033 6.35391 17.6427 6 18.7059" strokeLinecap="round"></path> </g>
               </svg>
             </button>
             <ul className="dropdown-menu absolute right-0 top-10 hidden text-gray-700 pt-1">
-              <li className="">
+              <li>
                 <button className="rounded bg-gray-200 font-normal hover:text-red-500 hover:bg-gray-300 py-2 px-4 block whitespace-no-wrap" onClick={() => handleLogout()}>
                   Logout
                 </button>
@@ -208,15 +208,77 @@ export default function Header() {
               </Link>
             </li>
             <li>
+              <Link href={'/store'}>
+                <span className="text-gray-800 dark:text-gray-50 font-medium uppercase px-4">Store</span>
+              </Link>
+            </li>
+            <li>
               <div className="relative dropdown inline-block duration-300 ease-in-out z-20">
                 <button className="text-gray-800 dark:text-gray-100 font-medium py-2 px-4 rounded inline-flex items-center">
                   <span className="mr-1 uppercase">all categories</span>
                   <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/> </svg>
                 </button>
-                <ul className="dropdown-menu absolute hidden text-gray-700 pt-1">
-                  <li className=""><a className="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="#">One</a></li>
-                  <li className=""><a className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="#">Two</a></li>
-                  <li className=""><a className="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="#">Three is the magic number</a></li>
+                <ul className="dropdown-menu absolute hidden text-gray-700 w-60">
+                  <li>
+                    <Link href={"/category/smartphones"} className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">
+                      Smartphones
+                    </Link>
+                  </li>
+                  <li>
+                  <li>
+                    <Link href={"/category/laptops"} className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">
+                      Laptops
+                    </Link>
+                  </li>
+                    <Link href={"/category/t-shirts"} className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">
+                      T-Shirts
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href={"/category/accessories"} className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">
+                      Accessories
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href={"/category/furniture"} className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">
+                      Furniture
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li>
+              <div className="relative dropdown inline-block duration-300 ease-in-out z-20">
+                <button className="text-gray-800 dark:text-gray-100 font-medium py-2 px-4 rounded inline-flex items-center">
+                  <span className="mr-1 uppercase">Collections</span>
+                  <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/> </svg>
+                </button>
+                <ul className="dropdown-menu absolute hidden text-gray-700 w-60">
+                  <li>
+                    <Link href={"/categroy/smartphones"} className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">
+                      Smartphones
+                    </Link>
+                  </li>
+                  <li>
+                  <li>
+                    <Link href={"/categroy/laptops"} className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">
+                      Laptops
+                    </Link>
+                  </li>
+                    <Link href={"/categroy/t-shirts"} className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">
+                      T-Shirts
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href={"/categroy/hoodies"} className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">
+                      Hoodies
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href={"/categroy/furniture"} className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">
+                      Furniture
+                    </Link>
+                  </li>
                 </ul>
               </div>
             </li>

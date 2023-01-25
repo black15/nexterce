@@ -119,3 +119,35 @@ export const searchProducts = async (name) => {
 	const data = await client.request(query, {name})
 	return data.products;
 }
+
+export const getProductsByCategories = async (slug) => {
+	const query = gql`
+		query GetProducts($slug: String!) {
+			categories(where: {slug: $slug}) {
+				products {
+					price
+					name
+					slug
+					images {
+						id
+						url
+					}
+				}
+			}
+		}
+	`
+	const data = await client.request(query, {slug})
+	return data.categories[0].products;
+}
+
+export const getCategories = async () => {
+	const query = gql`
+		query MyQuery {
+			categories {
+				slug
+			}
+		}
+	`
+	const data = await client.request(query)
+	return data.categories;
+}

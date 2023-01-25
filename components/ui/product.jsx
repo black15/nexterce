@@ -41,6 +41,10 @@ const ProductDeatils = ({product, related}) => {
 			<title>NEXTERCE | {name}</title>
 		</Head>
 
+		<div className="text-lg px-6 my-6">
+			<h3><span className="underline">Store</span> &gt; <Link href={"/store"} className="underline">All Products</Link> &gt; <span className="underline">{product.name}</span></h3>
+		</div>
+
 		<div className='flex flex-col items-center'>
 			{/* Product Details Container */}
 			<div className='flex flex-row w-full p-4 px-6'>
