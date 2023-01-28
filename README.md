@@ -1,10 +1,6 @@
 > Live Website: https://nexterce.vercel.app 
 <br/>
 <p align="center">
-  <a href="https://github.com/black15/dj-shop ">
-    <img src="https://dotmobo.github.io/images/djangopony.png" alt="Logo" width="80" height="80">
-  </a>
-
   <h3 align="center">Nexterce</h3>
 
   <p align="center">
