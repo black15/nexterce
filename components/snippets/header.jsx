@@ -55,7 +55,7 @@ export default function Header() {
     {/* Top Navigration Bar */}
     <div className="flex flex-row items-center justify-between w-full px-6 py-1 border-b-2 dark:border-gray-800">
       {/* Search products field */}
-      <div className="bg-red-300">
+      <div>
         <form onSubmit={(e) => {
           e.preventDefault()
           e.target.search.value = ""
@@ -68,6 +68,7 @@ export default function Header() {
               className="
                 form-control
                 block
+                w-full
                 md:w-[500px]
                 px-3
                 py-2
@@ -168,12 +169,12 @@ export default function Header() {
           </Link>
         </div>
        
-        <div className="flex flex-row items-center md:hidden">
+        <div className="flex flex-row items-center lg:hidden">
           {renderThemeChanger()}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             id="menu-button"
-            className="h-6 w-6 cursor-pointer md:hidden block"
+            className="h-6 w-6 cursor-pointer lg:hidden block"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -189,26 +190,28 @@ export default function Header() {
           </svg>
         </div>
 
-       <div className={`${toggleMenu ? "block" : "hidden"} w-full md:flex md:items-center md:w-auto`} id="menu" ref={menuRef}>
+       <div className={`${toggleMenu ? "block" : "hidden"} w-full lg:flex lg:items-center lg:w-auto`} id="menu" ref={menuRef}>
           <ul
             className="
               pt-4
               text-base text-gray-700
               flex
               flex-col
+              space-y-2
+              lg:space-y-0
               items-center
-              md:flex-row
-              md:justify-between 
-              md:pt-0 dark:text-gray-100"
+              lg:flex-row
+              lg:justify-between 
+              lg:pt-0 dark:text-gray-100"
           >
             <li>
               <Link href={'/'}>
-                <span className="text-gray-800 dark:text-gray-50 font-medium uppercase px-4">Home</span>
+                <span className="text-gray-800 dark:text-gray-50 font-medium uppercase py-2 px-4">Home</span>
               </Link>
             </li>
             <li>
               <Link href={'/store'}>
-                <span className="text-gray-800 dark:text-gray-50 font-medium uppercase px-4">Store</span>
+                <span className="text-gray-800 dark:text-gray-50 font-medium uppercase py-2 px-4">Store</span>
               </Link>
             </li>
             <li>

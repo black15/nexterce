@@ -10,7 +10,7 @@ function Banner() {
 	const router = useRouter()
 	
   return (
-	 <div className='flex flex-col space-y-12 lg:flex-row justify-around items-center rounded-b-xl shadow-[10px_10px_30px_-15px_rgba(0,0,0,0.3)] mt-12 px-0 py-2'>
+	 <div className='flex flex-col space-y-12 lg:space-y-0 lg:flex-row justify-around items-center rounded-b-xl shadow-[10px_10px_30px_-15px_rgba(0,0,0,0.3)] mt-12 px-6 py-2 lg:px-0'>
 		<div>
 			<Image
 				src={Laptop}
@@ -20,7 +20,7 @@ function Banner() {
 				unoptimized
 			/>
 		</div>
-		<div className='flex flex-col items-center space-y-6'>
+		<div className='flex flex-col items-center space-y-6 text-center'>
 			<CountdownTimer />
 			<div className='flex flex-col items-center space-y-2 uppercase'>
 				<span className='text-2xl font-semibold'>hot deal this week</span>

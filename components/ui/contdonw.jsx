@@ -44,19 +44,19 @@ function CountdownTimer(){
    
 	return(
 		<div className="flex items-center text-gray-50 bg-[#158BD4] p-6 rounded">
-			<p className="flex flex-col items-center space-y-2 h-16 pr-6 pl-2 border-r">
+			<p className="flex flex-col items-center space-y-2 lg:h-16 pr-6 pl-2 border-r">
 				<span className="text-3xl font-semibold">{countdownTime.countdownDays}</span>
 				<sub className="text-lg">Days</sub>
 			</p>
-			<p className="flex flex-col items-center space-y-2 h-16 px-6 border-r">
+			<p className="flex flex-col items-center space-y-2 lg:h-16 px-6 border-r">
 				<span className="text-3xl font-semibold">{countdownTime.countdownHours}</span>
 				<sub className="text-lg">Hours</sub>
 			</p>
-			<p className="flex flex-col items-center space-y-2 h-16 px-6 border-r">
+			<p className="flex flex-col items-center space-y-2 lg:h-16 px-6 border-r">
 				<span className="text-3xl font-semibold">{countdownTime.countdownMinutes}</span>
 				<sub className="text-lg">Minutes</sub>
 			</p>
-			<p className="flex flex-col items-center space-y-2 h-16 pl-6 pr-2">
+			<p className="flex flex-col items-center space-y-2 lg:h-16 pl-6 pr-2">
 				<span className="text-3xl font-semibold">{countdownTime.countdownSeconds}</span>
 				<sub className="text-lg">Seconds</sub>
 			</p>

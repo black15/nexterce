@@ -23,7 +23,7 @@ export default function Category({products}) {
 }
 
 export const getStaticProps = async ({params}) => {
-	const products = await getProductsByCategories(params.category) || null
+	const products = await getProductsByCategories(params.category) || []
 	return {
 		props: {
 			products,

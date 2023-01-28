@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react'
 import { useDispatch } from "react-redux"
 import {AiFillStar, AiOutlineStar} from 'react-icons/ai'
 import { addProduct, increase } from "../../store/cartSlice"
+import { ReadMore } from "../../libs/readmore"
 
 const ProductDeatils = ({product, related}) => {
 	
@@ -47,9 +48,9 @@ const ProductDeatils = ({product, related}) => {
 
 		<div className='flex flex-col items-center'>
 			{/* Product Details Container */}
-			<div className='flex flex-row w-full p-4 px-6'>
+			<div className='flex flex-col-reverse lg:flex-row w-full p-4 px-6'>
 				{/* Product Images Section */}
-				<div className='flex flex-col w-1/3 items-center space-y-6'>
+				<div className='flex flex-col lg:w-1/3 items-center space-y-6 mt-12 lg:mt-0'>
 					<div className='p-2 bg-gray-200 hover:bg-transparent rounded-lg transition duration-300'>
 						<Image className=' transition duration-300 w-72 h-72 bg-cover bg-center rounded-lg'
 							src={img ? img : images[0].url}
@@ -72,11 +73,15 @@ const ProductDeatils = ({product, related}) => {
 							</div>
 						))}
 					</div>
+					<div className='flex lg:hidden space-x-6 pt-6'>
+						<button className='font-medium bg-[#0192c2] text-gray-100 px-4 p-2 shadow drop-shadow rounded-sm uppercase' onClick={() => handleAdd(1)}>Add to cart</button>
+						<button className='font-medium text-gray-800 dark:text-gray-100 border border-[#016e92] px-4 p-2 rounded-sm uppercase cursor-pointer' onClick={()=>router.push('/')}>Continue shopping</button>
+					</div>
 				</div>
 				{/* END Product Images Section */}
 
 				{/* Product Details Section */}
-				<div className='flex flex-col space-y-4 w-2/3 px-6'>
+				<div className='flex flex-col space-y-4 lg:w-2/3 px-6'>
 					<h1 className='text-4xl text-gray-800 font-medium dark:text-gray-100'>{name}</h1>
 					<div className='flex items-center space-x-2 mb-2'>
 						<div className='flex'>
@@ -86,25 +91,14 @@ const ProductDeatils = ({product, related}) => {
 					</div>
 					<div>
 						<h2 className='text-xl text-gray-800 font-medium dark:text-gray-100 mb-1'>Details: </h2>
-						<p className='text text-gray-700 dark:text-gray-200'>
-							{description}
-						</p>
+						<ReadMore>{description}</ReadMore>
 					</div>
 					{/* Price */}
 					<div>
 						<h2 className='text-2xl text-[#0192c2] dark:text-[#0192c2] font-semibold'>${price}</h2>
 					</div>
-					{/* Quantity Settings */}
-					{/* <div className='flex items-center my-2'>
-						<span className='text-lg font-medium'>Quantity </span>
-						<div>
-							<button className='font-semibold px-3 p-1 mx-3 border border-red-500 rounded-full' onClick={() => setQty(prev => prev != 0 ? prev - 1 :  0)}> - </button>
-							<span className='text-lg font-semibold'>{qty}</span>
-							<button className='font-semibold px-3 p-1 mx-3 border border-[#0192c2] rounded-full' onClick={() => setQty(prev => prev + 1)}> + </button>
-						</div>
-					</div> */}
 					{/* Options  */}
-					<div className='flex space-x-6 pt-6'>
+					<div className='hidden lg:flex space-x-6 pt-6'>
 						<button className='font-medium bg-[#0192c2] text-gray-100 px-4 p-2 shadow drop-shadow rounded-sm uppercase' onClick={() => handleAdd(1)}>Add to cart</button>
 						<button className='font-medium text-gray-800 dark:text-gray-100 border border-[#016e92] px-4 p-2 rounded-sm uppercase cursor-pointer' onClick={()=>router.push('/')}>Continue shopping</button>
 					</div>
@@ -114,7 +108,7 @@ const ProductDeatils = ({product, related}) => {
 			
 			{/* Suggested products slide animation */}
 			{related.length ?
-				<div className="w-full overflow-x-hidden mt-24">
+				<div className="w-full overflow-x-hidden mt-24 px-4">
 					<h1 className="text-3xl font-medium my-6">You May Also Like</h1>
 					<div className="flex items-center justify-center gap-7 animate-marquee-thunder md:animate-marquee-faster xl:animate-marquee-fast hover:pause w-[100%]">
 						{related.map(product => (

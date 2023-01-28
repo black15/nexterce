@@ -8,8 +8,8 @@ export const Hero = () => {
   const router = useRouter()
 
   return (
-    <section className='flex flex-col lg:flex-row items-center justify-between p-6 my-16 shadow'>
-      <div className="flex flex-col items-center space-y-4 px-6 ml-6 lg:text-left">
+    <section className='flex flex-col lg:flex-row items-center space-y-6 lg:justify-between my-16 pb-6 shadow'>
+      <div className="flex flex-col items-center space-y-4 px-6 text-center lg:ml-6 lg:text-left">
         <h1 className="text-2xl font-bold text-[#EE8E76] w-full">Get 25%Off Today!</h1>
         <h1 className="text-6xl font-bold w-full"><span className='text-[#EE8E76]'>NEXT</span>ERCE</h1>
         <div>
@@ -19,14 +19,13 @@ export const Hero = () => {
           </button>
         </div>
       </div>
-      <div className=''>
+      <div className='w-full'>
         <Image
           className='dark:mix-blend-difference'
           src={BackGround}
           alt={'Background image'}
           width={1500}
-          height={1300}
-          unoptimized
+          height={1500}
           />
       </div>
     </section>

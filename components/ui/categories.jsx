@@ -7,11 +7,11 @@ import {GiOfficeChair} from 'react-icons/gi'
 
 function Categories() {
   return (
-	<div className='flex flex-row justify-evenly items-center rounded-b-xl shadow-[10px_10px_30px_-20px_rgba(0,0,0,0.3)] my-16 px-0 py-2'>
-		<h1 className='text-2xl font-medium'>
+	<div className='flex flex-row flex-wrap space-y-6 justify-evenly items-center rounded-b-xl border-b-2 dark:border-[#0f1523] my-16 px-0 py-2'>
+		<h1 className='text-2xl font-medium uppercase'>
 			Popular Categories
 		</h1>
-		<div className='flex flex-row items-center'>
+		<div className='flex flex-row flex-wrap justify-center'>
 			<div className='flex flex-col items-center space-y-6 p-6 mx-2 h-48 w-44 text-center'>
 				<IoPhonePortraitOutline fontSize={72} />
 				<span>Smartphones & Tablets</span>
