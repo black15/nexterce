@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+> Live Website: https://nexterce.vercel.app 
+<br/>
+<p align="center">
+  <a href="https://github.com/black15/dj-shop ">
+    <img src="https://dotmobo.github.io/images/djangopony.png" alt="Logo" width="80" height="80">
+  </a>
+
+  <h3 align="center">Nexterce</h3>
+
+  <p align="center">
+    E-Commerce Website Built With Next.js 
+    <br/>
+    <br/>
+    <a href="https://github.com/black15/nexterce/issues">Request Feature</a>
+  </p>
+
+![Demo Screenshot](https://user-images.githubusercontent.com/38563357/215286288-3baf235e-66e3-4f82-90e7-5b2893ce8144.png)
+
+## About The Project
+
+In this project i used the following technologies:
+***Backend***: Next.js, MongoDB, Hygraph(GraphCMS).
+***Frontend***: Next.js TailwindCss.
 
 ## Getting Started
 
-First, run the development server:
+In order for this website to work in your machine (localhost) follow these steps:
 
-```bash
-npm run dev
-# or
-yarn dev
+### Prerequisites
+
+* npm (to install node modules)
+
+### Installation
+
+1. Clone the repo
+```sh
+git clone https://github.com/black15/nexterce
+cd nexterce/
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install the node modules
+```sh
+pnpm install
+or
+npm install
+```
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+3. **Important :** You'll need to setup the environemment variables in order for this project to run as expected
+```env
+BASE_URL=http://example.com
+MONGODB_URI=************************
+GOOGLE_ID==************************
+GOOGLE_SECRET==************************
+FACEBOOK_CLIENT_ID==************************
+FACEBOOK_CLIENT_SECRET==************************
+GITHUB_ID==************************
+GITHUB_SECRET==************************
+NEXT_PUBLIC_HYGRAPH_URL==************************
+HYGRAPH_ACCESS_TOKEN==************************
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## Usage
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```sh
+pnpm dev
+or
+npm dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Authors
 
-## Learn More
+* [Oussama](https://www.facebook.com/unknownkid.18)
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+</p>
