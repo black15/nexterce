@@ -15,7 +15,9 @@
 ## About The Project
 
 In this project i used the following technologies:
+
 ***Backend***: Next.js, MongoDB, Hygraph(GraphCMS).
+
 ***Frontend***: Next.js TailwindCss.
 
 ## Getting Started
