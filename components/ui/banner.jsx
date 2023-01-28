@@ -3,8 +3,12 @@ import React from 'react'
 import CountdownTimer from './contdonw'
 import Laptop from '../../public/img/bannerimg1.png'
 import Headset from '../../public/img/bannerimg2.png'
+import { useRouter } from 'next/router'
 
 function Banner() {
+
+	const router = useRouter()
+	
   return (
 	 <div className='flex flex-col space-y-12 lg:flex-row justify-around items-center rounded-b-xl shadow-[10px_10px_30px_-15px_rgba(0,0,0,0.3)] mt-12 px-0 py-2'>
 		<div>
@@ -22,7 +26,7 @@ function Banner() {
 				<span className='text-2xl font-semibold'>hot deal this week</span>
 				<span className='text-2xl font-normal'>New Collection Up to 50% OFF</span>
 			</div>
-			<button className='font-medium bg-[#158BD4] text-gray-100 px-4 p-2 shadow rounded uppercase'>
+			<button className='font-medium bg-[#158BD4] text-gray-100 px-4 p-2 shadow rounded uppercase' onClick={() => {router.push('store')}}>
 				SHOP NOW
 			</button>
 		</div>

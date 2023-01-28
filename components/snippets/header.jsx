@@ -53,7 +53,7 @@ export default function Header() {
   // Navigration Bar Top + Bottom
   <header className="relative mb-2 z-30">
     {/* Top Navigration Bar */}
-    <div className="flex flex-row items-center justify-between w-full px-6 py-1 border-b-2 border-gray-100 dark:border-gray-800 shadow dark:drop-shadow">
+    <div className="flex flex-row items-center justify-between w-full px-6 py-1 border-b-2 dark:border-gray-800">
       {/* Search products field */}
       <div className="bg-red-300">
         <form onSubmit={(e) => {
@@ -148,19 +148,18 @@ export default function Header() {
     {/* Bottom Navigation Bar */}
     <nav
         className="
-          flex flex-wrap
-          items-center
-          justify-between
-          w-full
-          p-4
-          md:p-6
-          mb-6
-          text-lg 
-          text-gray-700
-          bg-white
-          dark:bg-gray-900 
-          dark:text-gray-50
-          drop-shadow
+        flex flex-wrap
+        items-center
+        justify-between
+        w-full
+        p-4
+        md:p-6
+        mb-6
+        text-lg 
+        text-gray-700
+        dark:text-gray-50
+        border-b-2
+        dark:border-gray-800
         "
       >
        <div>
